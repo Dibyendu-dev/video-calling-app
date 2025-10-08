@@ -4,9 +4,13 @@ import { createContext } from "react";
 const WS_Server = "http://localhost:3000";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
- const SocketContext = createContext<any | null>(null);
+ export const SocketContext = createContext<any | null>(null);
 
-const socket = SocketIoClient(WS_Server)
+const socket = SocketIoClient(WS_Server,{
+     withCredentials: false,
+    transports: ["polling", "websocket"]
+})
+
 interface Props {
     children: React.ReactNode
 }
