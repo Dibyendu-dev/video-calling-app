@@ -10,8 +10,8 @@ const roomHandler = (socket: Socket) => {
         console.log("Room created with id", roomId);
     };
 
-    const joinedRoom = ({roomId}:{roomId: string}) => {
-        console.log("new user has joined the room" , roomId);
+    const joinedRoom = ({roomId , peerId}: {roomId: string , peerId: string}) => {
+        console.log("new user has joined the room" , roomId, "with peer id as", peerId);
     };
 
     socket.on("create-room", createRoom);

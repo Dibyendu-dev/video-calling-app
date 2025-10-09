@@ -3,7 +3,7 @@ import { SocketContext } from "../Context/SocketContext";
 
 const CreateRoom: React.FC = () => {
   
-  const socket = useContext(SocketContext);
+  const {socket} = useContext(SocketContext);
 
   const initRoom = () => {
     console.log("Initialising a req to create a room", socket);
