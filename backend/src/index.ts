@@ -34,3 +34,5 @@ io.on("connection", (socket) => {
 server.listen(serverConfig.PORT, () => {
   console.log(`Server is up at port ${serverConfig.PORT}`);
 });
+
+//  peerjs --port 9000 --key peerjs --path /myapp
