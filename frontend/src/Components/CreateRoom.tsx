@@ -11,7 +11,7 @@ const CreateRoom: React.FC = () => {
   };
 
   return (
-    <button onClick={initRoom} className="btn btn-secondary">
+    <button onClick={initRoom} className="">
       Start a new meeting
     </button>
   );
