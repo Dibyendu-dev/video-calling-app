@@ -1,5 +1,6 @@
 import CreateRoom from "../Components/CreateRoom"
-import {ChevronRight} from 'lucide-react';
+import {ChevronRight} from 'lucide-react'
+
 const Home: React.FC = () => {
     return (
         <>
