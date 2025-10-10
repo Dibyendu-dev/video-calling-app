@@ -21,9 +21,16 @@ export const peerReducer = (state: PeerState, action: PeerAction) => {
                 }
             }
         case REMOVE_PEER:
-            // removing a peer
-            // TODO: you can try to write logic to remove a peer
-            return { ...state };
+            
+            const { peerId } = action.payload;
+
+             const { [peerId]: removed, ...rest } = state;
+
+             if (removed && removed.stream) {
+                 removed.stream.getTracks().forEach((track) => track.stop());
+            }
+            
+            return rest;;
         default:
             return { ...state };
     }
