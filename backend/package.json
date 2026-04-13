@@ -23,14 +23,21 @@
     "tslint": "^5.20.1",
     "typescript": "^5.9.3"
   },
-  "dependencies": {
+"dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "peer": "^1.0.2",
-    "peerjs": "^1.5.5",
-    "peerjs-server": "^0.2.9",
     "socket.io": "^4.8.1",
     "uuid": "^13.0.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.3",
+    "@types/node": "^22.0.0",
+    "@types/uuid": "^10.0.0",
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.1.10",
+    "typescript": "^5.9.3"
   }
 }
