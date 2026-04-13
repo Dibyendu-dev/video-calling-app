@@ -1,6 +1,7 @@
 import cors from "cors";
 import express from "express";
 import http from "http";
+import { ExpressPeerServer } from "peer";
 import { Server } from "socket.io";
 import serverConfig from "./config/serverConfig";
 import roomHandler from "./handlers/roomHandler";
@@ -18,11 +19,16 @@ const io = new Server(server, {
   },
 });
 
+const peerServer = ExpressPeerServer(server, {
+  path: "/myapp",
+});
+
+app.use("/myapp", peerServer);
+
 io.on("connection", (socket) => {
 
   console.log("New user connected");
 
-  // pass the socket conn to the room handler for room creation and joining
   roomHandler(socket);
 
   socket.on("disconnect", () => {
@@ -34,5 +40,3 @@ io.on("connection", (socket) => {
 server.listen(serverConfig.PORT, () => {
   console.log(`Server is up at port ${serverConfig.PORT}`);
 });
-
-//  peerjs --port 9000 --key peerjs --path /myapp

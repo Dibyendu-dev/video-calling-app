@@ -7,9 +7,10 @@
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc",
     "watch": "tsc -w",
-    "prestart": "npm run build",
-    "start": "nodemon .",
-    "dev": "npx concurrently  --kill-others \"npm run watch\" \" npm start\" "
+    "start": "node dist/index.js",
+    "dev": "npx concurrently --kill-others \"npm run watch\" \" npm start\" ",
+    "start:peer": "npx peerjs --port 9000 --path /myapp",
+    "start:all": "npm run build && npx concurrently --kill-others \"npm run start\" \"npm run start:peer\""
   },
   "keywords": [],
   "author": "",
@@ -27,6 +28,9 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
+    "peer": "^1.0.2",
+    "peerjs": "^1.5.5",
+    "peerjs-server": "^0.2.9",
     "socket.io": "^4.8.1",
     "uuid": "^13.0.0"
   }

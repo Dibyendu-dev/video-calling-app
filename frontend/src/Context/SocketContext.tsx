@@ -7,7 +7,7 @@ import { v4 as UUIDV4 } from "uuid";
 import { peerReducer } from "../Reducers/peerReducer";
 import { addPeerAction } from "../Actions/peerAction";
 
-const WS_Server = "http://localhost:3000";
+const WS_Server = import.meta.env.VITE_WS_SERVER || "http://localhost:5000";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const SocketContext = createContext<any | null>(null);
@@ -43,11 +43,22 @@ export const SocketProvider: React.FC<Props> = ({ children }) => {
   useEffect(() => {
 
     const userId = UUIDV4();
-    const newPeer = new Peer(userId , {
-      host: "localhost",
-      port: 9000,
-      path: "/myapp"
-    });
+    const peerHost = import.meta.env.VITE_PEER_HOST;
+    const peerPort = import.meta.env.VITE_PEER_PORT;
+    const peerPath = import.meta.env.VITE_PEER_PATH || "/myapp";
+    
+    const peerConfig: any = {
+      path: peerPath
+    };
+    
+    if (peerHost) {
+      peerConfig.host = peerHost;
+    }
+    if (peerPort) {
+      peerConfig.port = parseInt(peerPort);
+    }
+    
+    const newPeer = new Peer(userId, peerConfig);
 
     setUser(newPeer);
 
